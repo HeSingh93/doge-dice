@@ -25,14 +25,22 @@ class DieTest {
   }
 
   @Test
-  void oneSidedDie() { rollArbitraryDie(1); }
+  void oneSidedDie() {
+    rollArbitraryDie(1);
+  }
 
   @Test
-  void sixSidedDie() { rollArbitraryDie(6); }
+  void sixSidedDie() {
+    rollArbitraryDie(6);
+  }
 
   @Test
-  void twelveSidedDie() { rollArbitraryDie(12); }
+  void twelveSidedDie() {
+    rollArbitraryDie(12);
+  }
 
   @Test
-  void twentySidedDie() { rollArbitraryDie(20); }
+  void twentySidedDie() {
+    rollArbitraryDie(20);
+  }
 }

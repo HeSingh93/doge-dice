@@ -3,12 +3,9 @@ package com.example.dogedice.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class HelpWindow extends GenericController {
   @FXML
@@ -25,10 +22,10 @@ public class HelpWindow extends GenericController {
   @FXML
   public void initialize() {
     try {
-      text.setText(IOUtils.toString(
-          HelperMethods.getResAsStream("text/helpText"),
-          StandardCharsets.UTF_8
-      ).strip());
+      text.setText(
+          new String(
+              HelperMethods.getResAsStream("text/helpText").readAllBytes(),
+              StandardCharsets.UTF_8).strip());
       System.out.println(text.isResizable());
     } catch (IOException e) {
       text.setText("Could not read help text");

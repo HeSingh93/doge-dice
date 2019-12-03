@@ -11,3 +11,4 @@ build
 *.iml
 !gradle-wrapper.jar
 highscores.json
+*pid*.log

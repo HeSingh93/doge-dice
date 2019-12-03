@@ -14,7 +14,6 @@ import javafx.scene.effect.MotionBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.SVGPath;
-import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -323,10 +322,9 @@ public class PlayWindow extends GenericController {
 
   private SVGPath getSVGIcon(String filePath) throws IOException {
     SVGPath icon = new SVGPath();
-    String path = IOUtils.toString(
-        HelperMethods.getResAsStream(filePath),
-        StandardCharsets.UTF_8
-    );
+    String path = new String(
+        HelperMethods.getResAsStream(filePath).readAllBytes(),
+        StandardCharsets.UTF_8);
     icon.setContent(path);
     return icon;
   }

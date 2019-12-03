@@ -21,11 +21,8 @@ repositories {
 dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.1")
-  testCompile("org.testfx:testfx-junit5:4.0.16-alpha")
   compile("org.slf4j:slf4j-simple:1.7.21")
-  compile("commons-io:commons-io:2.6")
   implementation("com.google.code.gson:gson:2.8.6")
-
 }
 
 sourceSets {
@@ -46,27 +43,9 @@ javafx {
   modules("javafx.controls", "javafx.fxml")
 }
 
-tasks.create<Test>("testMainWindow") {
-  testLogging.showStandardStreams = true
-  include("**/*MainWindowTest.class")
-  useJUnitPlatform()
-}
-
-tasks.create<Test>("testFlow") {
-  testLogging.showStandardStreams = true
-  include("**/*FlowTest.class")
-  useJUnitPlatform()
-}
-
 tasks.create<Test>("testModel") {
   testLogging.showStandardStreams = true
   include("**/model/*.class")
-  useJUnitPlatform()
-}
-
-tasks.create<Test>("testGUI") {
-  testLogging.showStandardStreams = true
-  include("**/controllers/*.class")
   useJUnitPlatform()
 }
 
