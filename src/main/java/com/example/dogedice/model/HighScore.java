@@ -2,12 +2,11 @@ package com.example.dogedice.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.apache.commons.io.IOUtils;
 
 import java.io.FileWriter;
 import java.lang.reflect.Type;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,15 +24,13 @@ class HighScore {
     this.jsonPath = "highscores.json";
 
     try {
-      String json = IOUtils.toString(
-          new URL("file:" + jsonPath),
-          StandardCharsets.UTF_8
-      );
+      String json = new String(Files.readAllBytes(Paths.get(jsonPath)));
       Type listType = new TypeToken<ArrayList<HumanPlayer>>() {}.getType();
       List<HumanPlayer> playersFromFile = gson.fromJson(json, listType);
       players.addAll(playersFromFile);
     } catch (Exception e) {
       System.out.println("Something went wrong when trying to load json.");
+      e.printStackTrace();
     }
     while (players.size() < playersToSave) {
       players.add(new HumanPlayer("Super Doge"));
@@ -59,7 +56,7 @@ class HighScore {
     String json = gson.toJson(players);
     try {
       FileWriter fw = new FileWriter(jsonPath);
-      IOUtils.write(json, fw);
+      fw.write(json);
       fw.close();
     } catch (Exception e) {
       e.printStackTrace();
