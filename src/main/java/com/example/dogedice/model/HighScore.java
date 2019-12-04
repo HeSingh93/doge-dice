@@ -30,7 +30,6 @@ class HighScore {
       players.addAll(playersFromFile);
     } catch (Exception e) {
       System.out.println("Something went wrong when trying to load json.");
-      e.printStackTrace();
     }
     while (players.size() < playersToSave) {
       players.add(new HumanPlayer("Super Doge"));
