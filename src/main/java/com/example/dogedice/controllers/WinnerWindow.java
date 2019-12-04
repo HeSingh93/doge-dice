@@ -14,11 +14,12 @@ public class WinnerWindow extends GenericController {
 
    @Override
   public void postInitialization() {
-    List<Player> players = gameEngine.getPlayers();
-    Collections.sort(players);
-    Player player =  players.get(0);
-    winnerLabel.setText(player.getName());
-    }
+     gameEngine.updateHighScore();
+     List<Player> players = gameEngine.getPlayers();
+     Collections.sort(players);
+     Player player =  players.get(0);
+     winnerLabel.setText(player.getName());
+   }
 
   public void menuButtonClicked(MouseEvent mouseEvent) throws IOException {
     gameEngine.resetRounds();

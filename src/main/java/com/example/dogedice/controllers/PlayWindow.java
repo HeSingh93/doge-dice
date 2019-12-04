@@ -91,7 +91,6 @@ public class PlayWindow extends GenericController {
 
     gameTurns.setText("Rounds Left: " + gameEngine.getRoundsLeftAsString());
     if (gameEngine.getRoundsLeft() == 0) {
-      gameEngine.updateHighScore();
        rollButton.setOnMousePressed(event -> {
          try {
            HelperMethods.replaceScene(

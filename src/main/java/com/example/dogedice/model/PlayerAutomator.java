@@ -2,27 +2,23 @@ package com.example.dogedice.model;
 
 import java.util.Random;
 
-public class CpuPlayer extends Player {
+public class PlayerAutomator {
   private final GameEngine gameEngine;
   private final int stupidity;
-  private final Random r;
+  private Random r;
+  private Player parent;
 
-  public CpuPlayer(String name, GameEngine gameEngine, int stupidity) {
-    super(name);
+  PlayerAutomator(GameEngine gameEngine, int stupidity, Player parent) {
     this.gameEngine = gameEngine;
     this.stupidity = stupidity;
+    this.parent = parent;
     this.r = new Random();
-  }
-
-  @Override
-  public boolean isBot() {
-    return true;
   }
 
   public BotAction getDesiredAction() {
     int roundsLeft = gameEngine.getRoundsLeft() - 1;
-    int numDice = numD6 + numD20;
-    double pointsPerTurn = (3.5 * numD6) + (10.5 * numD20) + (numModifiers * numDice);
+    int numDice = parent.numD6 + parent.numD20;
+    double pointsPerTurn = (3.5 * parent.numD6) + (10.5 * parent.numD20) + (parent.numModifiers * numDice);
 
     // Chance of the bot taking a random action
     // The bot is very good at this game, having it take a random action is a sort of handicap.
@@ -45,8 +41,8 @@ public class CpuPlayer extends Player {
     long turnsUntilModifier = getTurnsUntil(gameEngine.getModifierPrice(), pointsPerTurn);
 
     // Expected earnings from any given purchase.
-    double d6Gain = (3.5 + numModifiers) * (roundsLeft - turnsUntilD6);
-    double d20Gain = (10.5 + numModifiers) * (roundsLeft - turnsUntilD20) / gameEngine.getD20Price();
+    double d6Gain = (3.5 + parent.numModifiers) * (roundsLeft - turnsUntilD6);
+    double d20Gain = (10.5 + parent.numModifiers) * (roundsLeft - turnsUntilD20) / gameEngine.getD20Price();
     double modifierGain = numDice * (roundsLeft - turnsUntilModifier) / gameEngine.getModifierPrice();
 
     double d6GainPerTurn = d6Gain / gameEngine.getD6Price();
@@ -69,18 +65,11 @@ public class CpuPlayer extends Player {
   }
 
   private long getTurnsUntil(int price, double pointsPerTurn) {
-    double exactTurns = (getScore() - price) / pointsPerTurn;
+    double exactTurns = (parent.getScore() - price) / pointsPerTurn;
     if (exactTurns < 0) {
       return Math.round(Math.ceil(exactTurns));
     } else {
       return 0;
     }
-  }
-
-  private long numberOfNSidedDice(int n) {
-    return getDice()
-        .stream()
-        .filter(x -> x.getNumOfSides() == n)
-        .count();
   }
 }

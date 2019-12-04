@@ -6,17 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameEngine {
-  private int roundsLeft;
-  private int totalRounds;
-  private int playerIndex;
-  private int d6Price;
-  private int d20Price;
-  private int modifierPrice;
+  private int totalRounds, roundsLeft, playerIndex;
+  private int d6Price, d20Price, modifierPrice;
+  private Integer numberOfHumans, numberOfCPUs;
   private List<Player> players;
   private final List<Die> startingDice;
   private final List<Modifier> startingModifiers;
-  private Integer numberOfHumans;
-  private Integer numberOfCPUs;
   private final HighScore highScore;
 
   public GameEngine(int totalRounds, int d6Price, int d20Price, int modifierPrice, int[] startingDice, int[] startingModifiers) {
@@ -54,13 +49,13 @@ public class GameEngine {
   }
 
   public void addHumanPlayer(String name) {
-    Player player = new HumanPlayer(name);
+    Player player = new Player(name);
     initializePlayer(player);
     this.players.add(player);
   }
 
   public void addCpuPlayer(String name) {
-    Player player = new CpuPlayer(name, this, 30);
+    Player player = new Player(name, this, 30);
     initializePlayer(player);
     this.players.add(player);
   }
@@ -92,10 +87,6 @@ public class GameEngine {
 
   public String getModifierPriceAsString() {
     return "Cost: " + modifierPrice;
-  }
-
-  public int getPlayerIndex() {
-    return playerIndex;
   }
 
   public int getRoundsLeft() {
@@ -204,14 +195,10 @@ public class GameEngine {
   }
 
   public BotAction getBotAction() {
-    if (getPlayer().isBot()) {
-      return ((CpuPlayer) getPlayer()).getDesiredAction();
-    } else {
-      return BotAction.PASS;
-    }
+    return getPlayer().getDesiredAction();
   }
 
-  public List<HumanPlayer> getHighScore() {
+  public List<Player> getHighScore() {
     return highScore.getPlayers();
   }
 

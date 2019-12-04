@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 class HighScore {
   private final Gson gson;
-  private List<HumanPlayer> players;
+  private List<Player> players;
   private final int playersToSave;
   private final String jsonPath;
 
@@ -25,29 +25,28 @@ class HighScore {
 
     try {
       String json = new String(Files.readAllBytes(Paths.get(jsonPath)));
-      Type listType = new TypeToken<ArrayList<HumanPlayer>>() {}.getType();
-      List<HumanPlayer> playersFromFile = gson.fromJson(json, listType);
+      Type listType = new TypeToken<ArrayList<Player>>() {}.getType();
+      List<Player> playersFromFile = gson.fromJson(json, listType);
       players.addAll(playersFromFile);
     } catch (Exception e) {
       System.out.println("Something went wrong when trying to load json.");
     }
     while (players.size() < playersToSave) {
-      players.add(new HumanPlayer("Super Doge"));
+      players.add(new Player("Super Doge"));
     }
   }
 
   void addPlayers(List<Player> newPlayers) {
-    List<HumanPlayer> newHumanPlayers = newPlayers
+    List<Player> newHumanPlayers = newPlayers
         .stream()
         .filter(x -> !x.isBot())
-        .map(x -> (HumanPlayer) x)
         .collect(Collectors.toList());
     players.addAll(newHumanPlayers);
     Collections.sort(players);
     players = players.subList(0, playersToSave);
   }
 
-  List<HumanPlayer> getPlayers() {
+  List<Player> getPlayers() {
     return players;
   }
 

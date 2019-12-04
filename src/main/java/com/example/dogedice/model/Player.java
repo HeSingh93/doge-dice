@@ -3,26 +3,48 @@ package com.example.dogedice.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Player implements Comparable<Player> {
+public class Player implements Comparable<Player> {
   private String name;
   private int score;
   private List<Die> dice;
   private List<Modifier> modifiers;
-  Integer numD6;
-  Integer numD20;
-  Integer numModifiers;
+  private boolean isBot;
+  private PlayerAutomator cpu;
+  int numD6;
+  int numD20;
+  int numModifiers;
 
   Player(String name) {
+    this.isBot = false;
+    this.cpu = null;
+
     this.name = name;
     this.score = 0;
     this.dice = new ArrayList<>();
     this.modifiers = new ArrayList<>();
+
     this.numD6 = 0;
     this.numD20 = 0;
     this.numModifiers = 0;
   }
 
-  public abstract boolean isBot();
+  Player(String name, GameEngine gameEngine, int stupidity) {
+    this.isBot = true;
+    this.cpu = new PlayerAutomator(gameEngine, stupidity, this);
+
+    this.name = name;
+    this.score = 0;
+    this.dice = new ArrayList<>();
+    this.modifiers = new ArrayList<>();
+
+    this.numD6 = 0;
+    this.numD20 = 0;
+    this.numModifiers = 0;
+  }
+
+  public boolean isBot() {
+    return this.isBot;
+  };
 
   public int getScore() {
     return this.score;
@@ -106,5 +128,12 @@ public abstract class Player implements Comparable<Player> {
   public void resetScore() {
     this.score = 0;
     this.dice = new ArrayList<>();
+  }
+
+  public BotAction getDesiredAction() {
+    if (this.cpu == null) {
+      return BotAction.PASS;
+    }
+    return cpu.getDesiredAction();
   }
 }

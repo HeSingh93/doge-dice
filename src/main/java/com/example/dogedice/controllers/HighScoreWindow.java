@@ -1,6 +1,6 @@
 package com.example.dogedice.controllers;
 
-import com.example.dogedice.model.HumanPlayer;
+import com.example.dogedice.model.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -15,7 +15,7 @@ public class HighScoreWindow extends GenericController {
 
   @Override
   public void postInitialization () {
-    List<HumanPlayer> highScore = gameEngine.getHighScore();
+    List<Player> highScore = gameEngine.getHighScore();
     firstPlace.setText(highScore.get(0).getName());
     secondPlace.setText(highScore.get(1).getName());
     thirdPlace.setText(highScore.get(2).getName());
