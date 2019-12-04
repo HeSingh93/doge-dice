@@ -19,10 +19,10 @@ repositories {
 }
 
 dependencies {
-  testCompile("org.mockito:mockito-core:2.+")
+  testImplementation("org.mockito:mockito-core:2.+")
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.1")
-  compile("org.slf4j:slf4j-simple:1.7.21")
+  implementation("org.slf4j:slf4j-simple:1.7.21")
   implementation("com.google.code.gson:gson:2.8.6")
 }
 
