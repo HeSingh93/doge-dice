@@ -50,6 +50,12 @@ tasks.create<Test>("testModel") {
   useJUnitPlatform()
 }
 
+tasks.create<Test>("testControllers") {
+  testLogging.showStandardStreams = true
+  include("**/controllers/*.class")
+  useJUnitPlatform()
+}
+
 tasks.test {
   testLogging.showStandardStreams = true
   useJUnitPlatform()
