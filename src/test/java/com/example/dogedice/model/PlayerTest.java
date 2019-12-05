@@ -18,4 +18,9 @@ class PlayerTest {
     player.addModifier(new Modifier(1));
     assertEquals(1, player.getModifiers().size());
   }
+  @Test
+  void removePoints_failToRemovePoints() {
+    boolean remove = player.removePoints(1);
+    assertFalse(remove, "Failed to remove Points");
+  }
 }
