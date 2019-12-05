@@ -1,11 +1,12 @@
 package com.example.dogedice.model;
 
-public class DieStub extends Die {
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-  public DieStub(int numOfSides) {
-    super(numOfSides);
-
+public class DieStub extends Die{
+  public DieStub() {
+    super(6);
   }
 
   @Override
@@ -13,8 +14,10 @@ public class DieStub extends Die {
     return super.roll();
   }
 
-  @Override
-  public int getNumOfSides() {
-    return super.getNumOfSides();
+  @Test
+  void roll_doesDieReturnCorrectValueWhenRolling() {
+
+    assertEquals(6, super.roll());
+
   }
 }

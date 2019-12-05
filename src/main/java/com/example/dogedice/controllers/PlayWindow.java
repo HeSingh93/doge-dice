@@ -102,7 +102,7 @@ public class PlayWindow extends GenericController {
            e.printStackTrace();
          }
        });
-      rollButton.setText("Show Winner!");
+      rollButton.setText("Show Wiener!");
     }
   }
 
