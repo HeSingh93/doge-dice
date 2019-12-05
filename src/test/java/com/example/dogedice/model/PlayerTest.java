@@ -23,4 +23,12 @@ class PlayerTest {
     boolean remove = player.removePoints(1);
     assertFalse(remove, "Failed to remove Points");
   }
+
+  @Test
+  void addDie_addTenDiceToPlayer() {
+    for (int i = 1; i <= 10; i++) {
+      player.addDie(new Die(6));
+    }
+    assertEquals(10, player.getDice().size());
+  }
 }
