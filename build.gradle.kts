@@ -16,12 +16,13 @@ application {
 
 repositories {
   mavenCentral()
+  jcenter()
 }
 
 dependencies {
-  testImplementation("org.mockito:mockito-core:2.+")
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.1")
+  testImplementation("org.mockito:mockito-core:3.1.0")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+  testImplementation("org.mockito:mockito-junit-jupiter:3.2.0")
   implementation("org.slf4j:slf4j-simple:1.7.21")
   implementation("com.google.code.gson:gson:2.8.6")
 }
