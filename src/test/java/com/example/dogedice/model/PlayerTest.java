@@ -6,17 +6,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
+  Player player;
 
   @BeforeEach
   void setUp() {
-    Player player = new Player("Carl");
+    player = new Player("Carl");
   }
 
   @Test
-  void canPlayerRollDies(Player player){
-
-    int test = player.rollAllDice();
-
-    assertEquals(test, 21);
+  void addModifier_AddValueOfOne_PlayerAddModifier() {
+    player.addModifier(new Modifier(1));
+    assertEquals(1, player.getModifiers().size());
   }
 }
