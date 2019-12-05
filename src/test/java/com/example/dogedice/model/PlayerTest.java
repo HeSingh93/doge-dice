@@ -1,12 +1,7 @@
 package com.example.dogedice.model;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class HumanPlayerTest {
+class PlayerTest {
 
-  @Test
-  void isBot() {
-  }
 }
