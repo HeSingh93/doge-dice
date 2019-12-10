@@ -38,4 +38,15 @@ class PlayerTest {
     player.addDie(new Die(20));
     assertEquals(20, player.getDice().get(0).getNumOfSides());
   }
+
+  @Test
+  void rollAllDice_SuccesfullyRollAllDice_AfterAddingModifier() {
+    player.addModifier(new Modifier(2));
+    player.addDie(new DieStub());
+
+    int outcome = player.rollAllDice();
+    int score = outcome * (player.getModifiers().get(0).getValue());
+
+    assertEquals(12, score);
+  }
 }
