@@ -44,9 +44,21 @@ class PlayerTest {
     player.addModifier(new Modifier(2));
     player.addDie(new DieStub());
 
-    int outcome = player.rollAllDice();
-    int score = outcome * (player.getModifiers().get(0).getValue());
+    player.rollAllDice();
+    player.sumAllModifiers();
 
-    assertEquals(12, score);
+    assertEquals(8, player.getScore());
+  }
+
+  @Test
+  void rollAllDice_RollAllDiceAndRemoveScore_AfterAddingModifier() {
+    player.addModifier(new Modifier(2));
+    player.addDie(new DieStub());
+
+    player.rollAllDice();
+    player.sumAllModifiers();
+    player.removePoints(8);
+
+    assertEquals(0, player.getScore());
   }
 }
