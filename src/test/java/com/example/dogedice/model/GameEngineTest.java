@@ -151,46 +151,193 @@ class GameEngineTest {
   // TODO
   @Test
   void canBuyD6_ReturnsFalse_WhenActivePlayerHasFourPointsAndCostIsFive() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        5,
+        1,
+        3,
+        new int[]{1,1,1,1},
+        new int[0]);
+    gameEngine.addHumanPlayer("");
+    gameEngine.rollDice();
+    assertFalse(
+        gameEngine.canBuyD6(),
+        "D6 costs 5 points, should return false when player has insufficient points");
   }
 
   @Test
   void canBuyD20_ReturnsFalse_WhenActivePlayerHasFourPointsAndCostIsFive() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        1,
+        5,
+        3,
+        new int[]{1,1,1,1},
+        new int[0]);
+    gameEngine.addHumanPlayer("");
+    gameEngine.rollDice();
+    assertFalse(
+        gameEngine.canBuyD20(),
+        "D20 costs 5 points, should return false when player has insufficient points");
   }
 
   @Test
   void canBuyModifier_ReturnsFalse_WhenActivePlayerHasFourPointsAndCostIsFive() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        1,
+        1,
+        5,
+        new int[]{1,1,1,1},
+        new int[0]);
+    gameEngine.addHumanPlayer("");
+    gameEngine.rollDice();
+    assertFalse(
+        gameEngine.canBuyModifier(),
+        "Modifier costs 5 points, should return false when player has insufficient points");
   }
 
   @Test
   void canBuyD6_ReturnsTrue_WhenActivePlayerHasFivePointsAndCostIsFive() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        5,
+        8,
+        3,
+        new int[]{1,1,1,1,1},
+        new int[0]);
+    gameEngine.addHumanPlayer("");
+    gameEngine.rollDice();
+    assertTrue(
+        gameEngine.canBuyD6(),
+        "D6 costs 5 points, returns true when a player has 5 points"
+    );
   }
 
   @Test
   void canBuyD20_ReturnsTrue_WhenActivePlayerHasFivePointsAndCostIsFive() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        1,
+        5,
+        3,
+        new int[]{1,1,1,1,1},
+        new int[0]);
+    gameEngine.addHumanPlayer("");
+    gameEngine.rollDice();
+    assertTrue(
+        gameEngine.canBuyD20(),
+        "D20 costs 5 points, returns true when a player has 5 points"
+    );
   }
 
   @Test
   void canBuyModifierOnce_ReturnsTrue_WhenActivePlayerHasFivePointsAndCostIsFive() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        1,
+        1,
+        5,
+        new int[]{1,1,1,1,1},
+        new int[0]);
+    gameEngine.addHumanPlayer("");
+    gameEngine.rollDice();
+    assertTrue(
+        gameEngine.canBuyModifier(),
+        "Modifier costs 5 points, returns true when a player has 5 points"
+    );
   }
 
   @Test
   void rollDice_ReturnsFive_WhenActivePlayerHasFiveOneSidedDice() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        1,
+        1,
+        5,
+        new int[]{1,1,1,1,1},
+        new int[0]);
+    gameEngine.addHumanPlayer("");
+    assertEquals(
+        5,
+        gameEngine.rollDice()
+    );
   }
 
   @Test
-  void sumModifiers_ReturnTen_WhenActivePlayerHasTwoDiceAndFiveLevelTwoModifiers() {
+  void sumModifiers_ReturnTwenty_WhenActivePlayerHasTwoDiceAndFiveLevelTwoModifiers() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        1,
+        1,
+        5,
+        new int[]{1,1},
+        new int[]{2,2,2,2,2});
+        gameEngine.addHumanPlayer("");
+        gameEngine.rollDice();
+
+        assertEquals(
+            20,
+            gameEngine.sumModifiers()
+        );
   }
 
   @Test
   void resetPlayer_getPlayersReturnsZeroSizeList_AfterResettingPlayersWhileHavingNonZeroPlayers() {
+    GameEngine gameEngine = new GameEngine(
+        5,
+        1,
+        1,
+        5,
+        new int[0],
+        new int[0]);
+    gameEngine.addHumanPlayer("A");
+    gameEngine.addHumanPlayer("B");
+    gameEngine.addCpuPlayer("RoboDoge#1");
+    gameEngine.resetPlayers();
+    assertEquals(
+        0,
+        gameEngine.getPlayers().size()
+    );
   }
 
   @Test
   void resetRounds_ResetsRoundsToOriginalValue_AfterRoundsHasBeenDecremented() {
+    GameEngine gameEngine = new GameEngine(
+        30,
+        1,
+        1,
+        5,
+        new int[0],
+        new int[0]);
+    gameEngine.addHumanPlayer("A");
+    gameEngine.incrementPlayer();
+    gameEngine.incrementPlayer();
+    gameEngine.incrementPlayer();
+    gameEngine.resetRounds();
+    assertEquals(
+        30,
+        gameEngine.getRoundsLeft()
+    );
   }
 
   @Test
   void resetScores_PlayersHaveZeroScore_AfterResettingWithTwoPlayersHavingNonZeroScores() {
+    GameEngine gameEngine = new GameEngine(
+        30,
+        1,
+        1,
+        5,
+        new int[]{1,1,1,1},
+        new int[]{2,3,2});
+    gameEngine.addHumanPlayer("A");
+    gameEngine.rollDice();
+    gameEngine.incrementPlayer();
+    gameEngine.resetScores();
+    assertEquals(
+        0,
+        gameEngine.getScore()
+    );
   }
 
   @Test
