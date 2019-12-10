@@ -11,13 +11,13 @@ public class DieStub extends Die{
 
   @Override
   public int roll() {
-    return super.roll();
+    return getNumOfSides();
   }
 
   @Test
   void roll_doesDieReturnCorrectValueWhenRolling() {
 
-    assertEquals(6, super.roll());
+    assertEquals(6, roll());
 
   }
 }
