@@ -81,4 +81,19 @@ class PlayerTest {
 
     assertEquals(0, player.getScore());
   }
+
+  @Test
+  void compareTo_CompareStubPlayers_afterComparingPlayerScore() {
+    PlayerStub testplayer = new PlayerStub(10);
+    PlayerStub testplayer2 = new PlayerStub(15);
+
+    testplayer.addDie(new DieStub());
+    testplayer.addModifier(new Modifier(2));
+    testplayer2.addModifier(new Modifier(1));
+    testplayer2.addDie(new DieStub());
+
+    int testPlayerOutcome = testplayer.rollAllDice();
+
+    assertEquals(1,testPlayerOutcome, testplayer2.compareTo(testplayer));
+  }
 }
