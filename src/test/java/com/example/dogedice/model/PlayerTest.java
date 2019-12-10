@@ -61,4 +61,24 @@ class PlayerTest {
 
     assertEquals(0, player.getScore());
   }
+
+  @Test
+  void sumAllModifiers_ModifierListHasTwo_AfterSumAllModifiers() {
+    player.addModifier(new Modifier(2));
+    player.addDie(new Die(6));
+
+    assertEquals(2, player.sumAllModifiers());
+  }
+
+  @Test
+  void resetScore_ResetScore_AfterRollAllDice() {
+    player.addModifier(new Modifier(2));
+    player.addDie(new DieStub());
+
+    player.rollAllDice();
+    player.getScore();
+    player.resetScore();
+
+    assertEquals(0, player.getScore());
+  }
 }
