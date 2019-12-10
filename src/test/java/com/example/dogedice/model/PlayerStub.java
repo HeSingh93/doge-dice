@@ -2,11 +2,8 @@ package com.example.dogedice.model;
 
 public class PlayerStub extends Player {
 
-  private int testPlayerScore;
-
-  public PlayerStub(int testPlayerScore) {
+  public PlayerStub() {
     super("");
-    this.testPlayerScore = testPlayerScore;
   }
 
 }

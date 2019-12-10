@@ -83,17 +83,22 @@ class PlayerTest {
   }
 
   @Test
-  void compareTo_CompareStubPlayers_afterComparingPlayerScore() {
-    PlayerStub testplayer = new PlayerStub(10);
-    PlayerStub testplayer2 = new PlayerStub(15);
+  void compareTo_comparePlayers_afterComparingPlayerScore() {
+    PlayerStub testPlayer = new PlayerStub();
+    PlayerStub testPlayer2 = new PlayerStub();
 
-    testplayer.addDie(new DieStub());
-    testplayer.addModifier(new Modifier(2));
-    testplayer2.addModifier(new Modifier(1));
-    testplayer2.addDie(new DieStub());
+    testPlayer.addDie(new DieStub());
+    testPlayer.addModifier(new Modifier(2));
+    testPlayer.rollAllDice();
+    testPlayer.sumAllModifiers();
+    System.out.println("player 1 score: " + testPlayer);
 
-    int testPlayerOutcome = testplayer.rollAllDice();
+    testPlayer2.addDie(new DieStub());
+    testPlayer2.addModifier(new Modifier(3));
+    testPlayer2.rollAllDice();
+    testPlayer2.sumAllModifiers();
+    System.out.println("player 2 score: " + testPlayer2);
 
-    assertEquals(1,testPlayerOutcome, testplayer2.compareTo(testplayer));
+    assertEquals(1, testPlayer2.compareTo(testPlayer));
   }
 }

@@ -106,7 +106,7 @@ public class Player implements Comparable<Player> {
   }
 
   public int compareTo(Player comparePlayer){
-    int compareScore = comparePlayer.getScore() - score;
+    int compareScore = score - comparePlayer.getScore();
     if (compareScore != 0) {
       return compareScore;
     } else {
