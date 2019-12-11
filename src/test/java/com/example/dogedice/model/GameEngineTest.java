@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -380,6 +381,36 @@ class GameEngineTest {
 
   @Test
   void buyD20_WhenPlayerBuysD20_RemovePointsReturnTrueAndAddDieToPlayer(){
+    GameEngine gameEngine = new GameEngine(
+        30,
+        1,
+        5,
+        1,
+        new int[]{1,1,1,1,1},
+        new int[]{1});
+    gameEngine.addHumanPlayer("");
+    gameEngine.rollDice();
+    //System.out.println("Players score before buying: " + gameEngine.getPlayer().getScore());
+    //System.out.println("Players dice before buying: " + gameEngine.getPlayer().getDice().size());
+    assertTrue(
+        gameEngine.canBuyD20()
+    );
+
+    gameEngine.buyD20();
+    //System.out.println("Players score after buying: " + gameEngine.getPlayer().getScore());
+    //System.out.println("Players dice after buying: " + gameEngine.getPlayer().getDice().size());
+
+    // Should be 6 when a player buys a new die since player is starting with 5 dice.
+    assertEquals(6,
+        gameEngine.getPlayer().getDice().size());
+
+    // Returns false if points are removed from the player
+    assertFalse(
+        gameEngine.canBuyD20());
+
+    // Score should be 0 when player has bought a die. (Points was 5 before buying die)
+    assertEquals(0,
+        gameEngine.getScore());
 
   }
 
