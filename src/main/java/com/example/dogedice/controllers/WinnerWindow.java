@@ -27,7 +27,6 @@ public class WinnerWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.mainWindowFXML,
         HelperMethods.mainWindowTitle,
-        mouseEvent,
         this
     );
   }
@@ -38,7 +37,6 @@ public class WinnerWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.playWindowFXML,
         HelperMethods.playWindowTitle,
-        mouseEvent,
         this
     );
   }
@@ -49,7 +47,6 @@ public class WinnerWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.highscoreWindowFXML,
         HelperMethods.highscoreWindowTitle,
-        mouseEvent,
         this
     );
   }

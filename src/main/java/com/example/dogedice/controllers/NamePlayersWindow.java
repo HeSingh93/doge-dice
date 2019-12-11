@@ -48,7 +48,6 @@ public class NamePlayersWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.playWindowFXML,
         HelperMethods.playWindowTitle,
-        mouseEvent,
         this);
   }
 
@@ -61,7 +60,6 @@ public class NamePlayersWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.playerSelectionWindowFXML,
         HelperMethods.playerSelectionWindowTitle,
-        mouseEvent,
         this
     );
   }

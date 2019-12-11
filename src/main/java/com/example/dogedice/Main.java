@@ -27,6 +27,7 @@ public class Main extends Application {
     Scene scene = new Scene(root);
     GenericController controller = loader.getController();
     controller.setGameEngine(gameEngine);
+    controller.setStage(mainWindow);
 
     mainWindow.setTitle(HelperMethods.mainWindowTitle);
     mainWindow.setScene(scene);

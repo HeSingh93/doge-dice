@@ -8,7 +8,6 @@ public class MainWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.playerSelectionWindowFXML,
         HelperMethods.playerSelectionWindowTitle,
-        mouseEvent,
         this
     );
   }
@@ -17,7 +16,6 @@ public class MainWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.highscoreWindowFXML,
         HelperMethods.highscoreWindowTitle,
-        mouseEvent,
         this
     );
   }
@@ -26,7 +24,6 @@ public class MainWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.helpWindowFXML,
         HelperMethods.helpWindowTitle,
-        mouseEvent,
         this
     );
   }
@@ -35,7 +32,6 @@ public class MainWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.dogeCoinWindowFXML,
         HelperMethods.dogeCoinWindowTitle,
-        mouseEvent,
         this
     );
   }

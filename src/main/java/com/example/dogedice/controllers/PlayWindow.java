@@ -58,7 +58,6 @@ public class PlayWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.namePlayersWindowFXML,
         HelperMethods.namePlayersWindowTitle,
-        mouseEvent,
         this
     );
   }
@@ -96,7 +95,6 @@ public class PlayWindow extends GenericController {
            HelperMethods.replaceScene(
                HelperMethods.winnerWindowFXML,
                HelperMethods.winnerWindowTitle,
-               mouseEvent,
                this);
          } catch (IOException e) {
            e.printStackTrace();

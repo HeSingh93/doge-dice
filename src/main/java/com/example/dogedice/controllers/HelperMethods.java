@@ -84,13 +84,11 @@ public class HelperMethods {
    * Replaces the scene in the current stage and passes on the GameEngine instance to the next controller.
    * @param fxmlPath Path to the FXML we're loading.
    * @param windowTitle The new title for the stage.
-   * @param mouseEvent MouseEvent from which we can retrieve the stage.
    * @param oldController The old controller from which we can inherit gameEngine and clip
    * @throws IOException If the FXML can't be loaded.
    */
   static void replaceScene(String fxmlPath,
                            String windowTitle,
-                           MouseEvent mouseEvent,
                            GenericController oldController) throws IOException {
     Stage stage = oldController.stage;
     stage.setTitle(windowTitle);

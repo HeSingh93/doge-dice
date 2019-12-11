@@ -29,7 +29,6 @@ public class HighScoreWindow extends GenericController {
     HelperMethods.replaceScene(
         HelperMethods.mainWindowFXML,
         HelperMethods.mainWindowTitle,
-        mouseEvent,
         this
     );
   }
