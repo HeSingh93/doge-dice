@@ -84,20 +84,20 @@ class PlayerTest {
 
   @Test
   void compareTo_comparePlayers_afterComparingPlayerScore() {
-    PlayerStub testPlayer = new PlayerStub();
-    PlayerStub testPlayer2 = new PlayerStub();
+    Player testPlayer = new Player("");
+    Player testPlayer2 = new Player("");
 
     testPlayer.addDie(new DieStub());
     testPlayer.addModifier(new Modifier(2));
     testPlayer.rollAllDice();
     testPlayer.sumAllModifiers();
-    System.out.println("player 1 score: " + testPlayer);
+   // System.out.println("player 1 score: " + testPlayer);
 
     testPlayer2.addDie(new DieStub());
     testPlayer2.addModifier(new Modifier(3));
     testPlayer2.rollAllDice();
     testPlayer2.sumAllModifiers();
-    System.out.println("player 2 score: " + testPlayer2);
+    // System.out.println("player 2 score: " + testPlayer2);
 
     assertEquals(1, testPlayer2.compareTo(testPlayer));
   }
