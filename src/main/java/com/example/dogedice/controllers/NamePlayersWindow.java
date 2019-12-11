@@ -18,6 +18,14 @@ public class NamePlayersWindow extends GenericController {
   @FXML
   VBox namePlayersBox;
 
+  List<TextField> getHumans() {
+    return humans;
+  }
+
+  List<TextField> getCpus() {
+    return cpus;
+  }
+
   @Override
   public void postInitialization() {
     for (int i = 1; i <= gameEngine.getNumberOfHumans(); i++) {

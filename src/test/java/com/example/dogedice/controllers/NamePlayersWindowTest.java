@@ -1,12 +1,12 @@
 package com.example.dogedice.controllers;
 
 import com.example.dogedice.model.GameEngine;
+import com.example.dogedice.model.Player;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -20,6 +20,8 @@ import org.testfx.framework.junit5.ApplicationTest;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.when;
 
@@ -60,17 +62,24 @@ class NamePlayersWindowTest extends ApplicationTest {
     controller.setStage(stage);
     stage.setScene(scene);
 
-    //Scene scene = new Scene(new StackPane());
-    //stage.setScene(scene);
-
-    //controller = new NamePlayersWindow();
-
     when(namePlayersBoxMock.getChildren())
         .thenReturn(namePlayersListMock);
   }
 
   @Test
-  void lol() {
+  void postInitialization_ControllerCreatesTwoHumanTextFields_WhenGameEngineIsSetToTwoHumansAndTwoCPUs() {
+    controller.postInitialization();
+    assertEquals(2, controller.getHumans().size(), "Expected two text fields for human players.");
+  }
+
+  @Test
+  void postInitialization_ControllerCreatesTwoCpuTextFields_WhenGameEngineIsSetToTwoHumansAndTwoCPUs() {
+    controller.postInitialization();
+    assertEquals(2, controller.getCpus().size(), "Expected two text fields for CPU players");
+  }
+
+  @Test
+  void confirmButtonClicked_GameEngineCreatesTwoHumanAndTwoCpuPlayers_WhenControllerHasTwoTextFieldsForEach() {
     controller.postInitialization();
 
     interact( () -> {
@@ -80,5 +89,19 @@ class NamePlayersWindowTest extends ApplicationTest {
         e.printStackTrace();
       }
     });
+
+    List<Player> players = gameEngine.getPlayers();
+    List<Player> cpus = players
+        .stream()
+        .filter(Player::isBot)
+        .collect(Collectors.toList());
+    List<Player> humans = players
+        .stream()
+        .filter(x -> !x.isBot())
+        .collect(Collectors.toList());
+    assertEquals(4, players.size(), "Expected four players");
+    assertEquals(2, humans.size(), "Expected two human players");
+    assertEquals(2, cpus.size(), "Expected two CPU players");
+
   }
 }
