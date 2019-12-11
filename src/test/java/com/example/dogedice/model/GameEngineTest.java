@@ -373,14 +373,29 @@ class GameEngineTest {
     //Player has 5 dice and one modifier to start and should be that when resetting.
   }
 
-  // TODO
   @Test
-  void buyD6_WhenPlayerBuysD6_RemovePointsReturnTrueAndAddDieToPlayer() {
+  void buyD6_WhenPlayerBuysD6_RemovePointsReturnNotNullAndAddDieToPlayer() {
+    GameEngine gameEngine = new GameEngine(
+        30,
+        6,
+        1,
+        1,
+        new int[]{1, 1, 1, 1, 1, 1},
+        new int[]{1});
+
+    gameEngine.addHumanPlayer("jocke");
+    gameEngine.rollDice();
+    assertNotNull(gameEngine.buyD6());
+    gameEngine.buyD6();
+    assertEquals(0,gameEngine.getPlayer().getScore());
+    gameEngine.rollDice();
+    assertEquals(6, gameEngine.buyD6().getNumOfSides());
+    assertEquals(8, gameEngine.getPlayer().getDice().size());
 
   }
 
-  @Test
-  void buyD20_WhenPlayerBuysD20_RemovePointsReturnTrueAndAddDieToPlayer(){
+    @Test
+  void buyD20_WhenPlayerBuysD20_RemovePointsReturnNotNullAndAddDieToPlayer(){
     GameEngine gameEngine = new GameEngine(
         30,
         1,
@@ -415,11 +430,21 @@ class GameEngineTest {
   }
 
   @Test
-  void buyModifier_WhenPlayerBuysModifier_RemovePointsReturnTrueAndAddModifierToPlayer(){
+  void buyModifier_WhenPlayerBuysModifier_RemovePointsReturnNotNullAndAddModifierToPlayer(){
+    GameEngine gameEngine = new GameEngine(
+        30,
+        1,
+        1,
+        1,
+        new int[]{1,1,1,1,1,1},
+        new int[]{1});
+    gameEngine.addHumanPlayer("");
+    gameEngine.rollDice();
+    gameEngine.buyModifier();
 
+    assertNotNull(gameEngine.buyModifier());
+    assertEquals(3, gameEngine.getPlayer().getModifiers().size());
+    assertEquals(4, gameEngine.getPlayer().getScore());
   }
-  // buyD6 subtrahera poäng, returnera true, lägga till tärning till spelare
-  // buyD20 subtrahera poäng, returnera true, lägga till tärning till spelare
-  // buyModifier subtrahera poäng, returnera true, lägga till tärning till spelare
   // toString
 }
