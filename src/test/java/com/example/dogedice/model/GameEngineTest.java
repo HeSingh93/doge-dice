@@ -395,42 +395,28 @@ class GameEngineTest {
   }
 
     @Test
-  void buyD20_WhenPlayerBuysD20_RemovePointsReturnNotNullAndAddDieToPlayer(){
+  void buyD20_WhenPlayerBuysD20_RemovePointsReturnNotNullAndAddDieToPlayer() {
     GameEngine gameEngine = new GameEngine(
         30,
         1,
-        5,
+        6,
         1,
-        new int[]{1,1,1,1,1},
+        new int[]{1,1,1,1,1,1},
         new int[]{1});
-    gameEngine.addHumanPlayer("");
-    gameEngine.rollDice();
-    //System.out.println("Players score before buying: " + gameEngine.getPlayer().getScore());
-    //System.out.println("Players dice before buying: " + gameEngine.getPlayer().getDice().size());
-    assertTrue(
-        gameEngine.canBuyD20()
-    );
 
-    gameEngine.buyD20();
-    //System.out.println("Players score after buying: " + gameEngine.getPlayer().getScore());
-    //System.out.println("Players dice after buying: " + gameEngine.getPlayer().getDice().size());
-
-    // Should be 6 when a player buys a new die since player is starting with 5 dice.
-    assertEquals(6,
-        gameEngine.getPlayer().getDice().size());
-
-    // Returns false if points are removed from the player
-    assertFalse(
-        gameEngine.canBuyD20());
-
-    // Score should be 0 when player has bought a die. (Points was 5 before buying die)
-    assertEquals(0,
-        gameEngine.getScore());
+      gameEngine.addHumanPlayer("jocke");
+      gameEngine.rollDice();
+      assertNotNull(gameEngine.buyD20());
+      gameEngine.buyD20();
+      assertEquals(0,gameEngine.getPlayer().getScore());
+      gameEngine.rollDice();
+      assertEquals(20, gameEngine.buyD20().getNumOfSides());
+      assertEquals(8, gameEngine.getPlayer().getDice().size());
 
   }
 
   @Test
-  void buyModifier_WhenPlayerBuysModifier_RemovePointsReturnNotNullAndAddModifierToPlayer(){
+  void buyModifier_WhenPlayerBuysModifier_RemovePointsReturnNotNullAndAddModifierToPlayer() {
     GameEngine gameEngine = new GameEngine(
         30,
         1,
@@ -438,6 +424,7 @@ class GameEngineTest {
         1,
         new int[]{1,1,1,1,1,1},
         new int[]{1});
+
     gameEngine.addHumanPlayer("");
     gameEngine.rollDice();
     gameEngine.buyModifier();
