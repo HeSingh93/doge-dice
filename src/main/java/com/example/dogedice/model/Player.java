@@ -128,6 +128,7 @@ public class Player implements Comparable<Player> {
   public void resetScore() {
     this.score = 0;
     this.dice = new ArrayList<>();
+    this.modifiers = new ArrayList<>();
   }
 
   public BotAction getDesiredAction() {

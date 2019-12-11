@@ -342,11 +342,53 @@ class GameEngineTest {
 
   @Test
   void resetScores_PlayersHaveOnlyStarterDiceAndModifiers_AfterResettingWithTwoPlayersAndExtraDiceAndModifiers() {
+    GameEngine gameEngine = new GameEngine(
+        30,
+        1,
+        1,
+        1,
+        new int[]{1,1,1,1,1},
+        new int[]{1});
+    gameEngine.addHumanPlayer("1");
+    gameEngine.addHumanPlayer("2");
+    gameEngine.rollDice();
+    gameEngine.incrementPlayer();
+    gameEngine.rollDice();
+    gameEngine.buyD6();
+    gameEngine.buyD20();
+    gameEngine.buyModifier();
+    gameEngine.incrementPlayer();
+    gameEngine.buyD6();
+    gameEngine.buyD20();
+    gameEngine.buyModifier();
+
+    gameEngine.resetScores();
+
+    assertEquals(5,
+    gameEngine.getPlayer().getDice().size());
+
+    assertEquals(1,
+        gameEngine.getPlayer().getModifiers().size());
+    //Player has 5 dice and one modifier to start and should be that when resetting.
   }
 
   // TODO
-  // buyD6
-  // buyD20
-  // buyModifier
+  @Test
+  void buyD6_WhenPlayerBuysD6_RemovePointsReturnTrueAndAddDieToPlayer() {
+
+  }
+
+  @Test
+  void buyD20_WhenPlayerBuysD20_RemovePointsReturnTrueAndAddDieToPlayer(){
+
+  }
+
+  @Test
+  void buyModifier_WhenPlayerBuysModifier_RemovePointsReturnTrueAndAddModifierToPlayer(){
+
+  }
+  // buyD6 subtrahera poäng, returnera true, lägga till tärning till spelare
+  // buyD20 subtrahera poäng, returnera true, lägga till tärning till spelare
+  // buyModifier subtrahera poäng, returnera true, lägga till tärning till spelare
   // toString
 }
