@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NamePlayersWindow extends GenericController {
-  private int numCpu = 0;
-  private int numHum = 0;
   private List<TextField> humans = new ArrayList<>();
   private List<TextField> cpus = new ArrayList<>();
 
@@ -25,6 +23,7 @@ public class NamePlayersWindow extends GenericController {
     for (int i = 1; i <= gameEngine.getNumberOfHumans(); i++) {
       addPlayer("Human", i, false, humans);
     }
+
     for (int i = 1; i <= gameEngine.getNumberOfCPUs(); i++) {
       addPlayer("Robo Doge", i, true, cpus);
     }
@@ -50,8 +49,7 @@ public class NamePlayersWindow extends GenericController {
         HelperMethods.playWindowFXML,
         HelperMethods.playWindowTitle,
         mouseEvent,
-        this
-    );
+        this);
   }
 
   public void spinningDogeClicked(MouseEvent mouseEvent)  {

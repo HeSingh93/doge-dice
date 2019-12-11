@@ -3,11 +3,13 @@ package com.example.dogedice.controllers;
 import com.example.dogedice.model.GameEngine;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
 
 import javax.sound.sampled.Clip;
 
 public abstract class GenericController {
   GameEngine gameEngine;
+  Stage stage;
   private Clip clip;
 
   GenericController() {
@@ -17,7 +19,12 @@ public abstract class GenericController {
 
   public void inheritSettings(GenericController controller, Scene scene) {
     gameEngine = controller.gameEngine;
+    stage = controller.stage;
     setClip(controller.clip, scene);
+  }
+
+  public void setStage(Stage stage) {
+    this.stage = stage;
   }
 
   public void setGameEngine(GameEngine gameEngine) {

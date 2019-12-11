@@ -92,9 +92,7 @@ public class HelperMethods {
                            String windowTitle,
                            MouseEvent mouseEvent,
                            GenericController oldController) throws IOException {
-    Stage stage = (Stage) ((Node) mouseEvent.getSource())
-        .getScene()
-        .getWindow();
+    Stage stage = oldController.stage;
     stage.setTitle(windowTitle);
     FXMLLoader loader = getLoader(fxmlPath);
     Parent root = loader.load();
@@ -102,6 +100,11 @@ public class HelperMethods {
     GenericController controller = loader.getController();
     controller.inheritSettings(oldController, scene);
     controller.postInitialization();
-    stage.setScene(scene);
+
+    try {
+      stage.setScene(scene);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }

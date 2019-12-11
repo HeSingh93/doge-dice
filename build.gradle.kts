@@ -23,6 +23,8 @@ dependencies {
   testImplementation("org.mockito:mockito-core:3.1.0")
   testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
   testImplementation("org.mockito:mockito-junit-jupiter:3.2.0")
+  testImplementation("org.testfx:testfx-core:4.0.16-alpha")
+  testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
   implementation("org.slf4j:slf4j-simple:1.7.21")
   implementation("com.google.code.gson:gson:2.8.6")
 }
